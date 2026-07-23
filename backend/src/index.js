@@ -6,7 +6,7 @@ import path from "path";
 import connectDB from "./libs/db.js";
 import { clerkMiddleware } from '@clerk/express'
 import job from "./libs/cron.js";
-import clertWebhook from "./webhooks/clerk.webhook.js"
+import clerkWebhook from "./webhooks/clerk.webhook.js";
 
 const app = express();
 
