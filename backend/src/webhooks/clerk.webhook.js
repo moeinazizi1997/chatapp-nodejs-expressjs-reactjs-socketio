@@ -20,9 +20,9 @@ router.post("/",async (req,res)=>{
         });
 
         const event = await verifyWebhook(request,{signingSecret});
+        const user = event.data;
 
         if(event.type === "user.created" || event.type === "user.updated"){
-            const user = event.data;
             const email = user.email_addresses?.find(e=>e.id === user.primary_email_address_id)?.email_address ?? user.email_addresses?.[0]?.email_address;
             const fullName = [user.first_name,user.lastName].filter(Boolean).join(" ") || user.username || email?.split("@")[0] || "Clerk User";
 
