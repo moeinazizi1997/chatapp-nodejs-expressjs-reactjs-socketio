@@ -9,8 +9,7 @@ import job from "./libs/cron.js";
 import clerkWebhook from "./webhooks/clerk.webhook.js";
 import authRouter from "./routes/auth.routes.js";
 import messageRouter from "./routes/message.routes.js";
-
-const app = express();
+import {app,server} from "./libs/socket.js";
 
 app.use("/api/webhooks/clerk",express.raw({type:"application/json"}),clerkWebhook);
 
@@ -49,7 +48,7 @@ if(fs.existsSync(publicDir)){
     })
 }
 
-app.listen(PORT,async()=>{
+server.listen(PORT,async()=>{
     await connectDB();
     console.log(`server is up and running on port ${PORT}`);
     if(process.env.NODE_ENV === "production") job.start()
