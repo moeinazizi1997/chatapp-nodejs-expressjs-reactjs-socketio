@@ -8,10 +8,11 @@ import { clerkMiddleware } from '@clerk/express'
 import job from "./libs/cron.js";
 import clerkWebhook from "./webhooks/clerk.webhook.js";
 import authRouter from "./routes/auth.routes.js";
+import messageRouter from "./routes/message.routes.js";
 
 const app = express();
 
-app.use("/api/webhooks/clerk",express.raw({type:"application/json"}),clerkWebhook)
+app.use("/api/webhooks/clerk",express.raw({type:"application/json"}),clerkWebhook);
 
 app.use(cors({
     origin : [process.env.FRONTEND_URL],
@@ -38,6 +39,8 @@ app.get("/health",(req,res)=>{
 });
 
 app.use("/api/auth",authRouter);
+
+app.use("api/messages",messageRouter);
 
 if(fs.existsSync(publicDir)){
     app.use(express.static(publicDir));
