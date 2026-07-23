@@ -7,6 +7,7 @@ import connectDB from "./libs/db.js";
 import { clerkMiddleware } from '@clerk/express'
 import job from "./libs/cron.js";
 import clerkWebhook from "./webhooks/clerk.webhook.js";
+import authRouter from "./routes/auth.routes.js";
 
 const app = express();
 
@@ -35,6 +36,8 @@ app.get("/health",(req,res)=>{
         ok : true
     });
 });
+
+app.use("/api/auth",authRouter);
 
 if(fs.existsSync(publicDir)){
     app.use(express.static(publicDir));
