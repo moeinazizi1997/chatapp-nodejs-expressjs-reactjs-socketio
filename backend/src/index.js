@@ -6,8 +6,11 @@ import path from "path";
 import connectDB from "./libs/db.js";
 import { clerkMiddleware } from '@clerk/express'
 import job from "./libs/cron.js";
+import clertWebhook from "./webhooks/clerk.webhook.js"
 
 const app = express();
+
+app.use("/api/webhooks/clerk",express.raw({type:"application/json"}),clerkWebhook)
 
 app.use(cors({
     origin : [process.env.FRONTEND_URL],
