@@ -1,4 +1,4 @@
-FROM node:22-bookwork-slim AS frontend-build
+FROM node:22-bookworm-slim AS frontend-build
 WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm install --no-audit --no-fund --legacy-peer-deps
@@ -9,14 +9,14 @@ ENV REACT_APP_CLERK_PUBLISHABLE_KEY=$REACT_APP_CLERK_PUBLISHABLE_KEY
 RUN npm run build
 
 
-FROM node:22-bookwork-slim AS backend-build
+FROM node:22-bookworm-slim AS backend-build
 WORKDIR /app
 COPY backend/package.json backend/package-lock.json ./
 RUN npm install --no-audit --no-fund
 COPY backend/ ./
 RUN npm run build
 
-FROM node:22-bookwork-slim AS runner
+FROM node:22-bookworm-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3001
