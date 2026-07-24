@@ -6,8 +6,6 @@ import { ClerkProvider } from '@clerk/react'
 
 const CLERK_PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
-console.log("CLERK_PUBLISHABLE_KEY:",CLERK_PUBLISHABLE_KEY)
-
 createRoot(document.getElementById('root')).render(
   <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
     <App />
