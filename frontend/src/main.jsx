@@ -3,9 +3,12 @@ import './index.css'
 import App from './App.jsx'
 
 import { ClerkProvider } from '@clerk/react'
+import {BrowserRouter} from "react-router";
 
 createRoot(document.getElementById('root')).render(
   <ClerkProvider>
-    <App />
+    <BrowserRouter>
+      <App/>   
+    </BrowserRouter>
   </ClerkProvider>
 )
