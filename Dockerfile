@@ -24,7 +24,7 @@ ENV PORT=3001
 COPY backend/package.json backend/package-lock.json ./
 RUN npm install --no-audit --no-fund --omit=dev && npm cache clean --force
 COPY --from=backend-build /app/dist ./dist
-COPY --from=frontend-build /app/frontend/build ./public
+COPY --from=frontend-build /app/frontend/dist ./public
 EXPOSE 3001
 USER node
 CMD ["node", "dist/index.js"]
