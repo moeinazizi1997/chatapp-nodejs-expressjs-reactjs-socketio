@@ -4,8 +4,8 @@ COPY frontend/package.json frontend/package-lock.json ./
 RUN npm install --no-audit --no-fund --legacy-peer-deps
 COPY frontend/ ./
 ENV REACT_API_URL=
-ARG REACT_APP_CLERK_PUBLISHABLE_KEY
-ENV REACT_APP_CLERK_PUBLISHABLE_KEY=$REACT_APP_CLERK_PUBLISHABLE_KEY
+ARG VITE_CLERK_PUBLISHABLE_KEY
+ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
 RUN npm run build
 
 
